@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 8: Webpack, SCSS, TS</title>
+  <!-- Підключення скомпільованого Webpack файлу -->
+  <script defer src="dist/bundle.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 id="mainHeader">TODO список (TypeScript)</h1>
+
+    <!-- Форма додавання / редагування задачі -->
+    <form id="todoForm">
+      <input type="text" name="title" placeholder="Назва задачі" required />
+      <textarea name="description" placeholder="Детальний опис задачі" required></textarea>
+      
+      <div class="form-row">
+        <select name="tag">
+          <option value="Навчання">Навчання</option>
+          <option value="Робота">Робота</option>
+          <option value="Особисте">Особисте</option>
+        </select>
+        <input type="date" name="deadline" />
+      </div>
+
+      <div class="form-actions">
+        <button type="reset" class="btn btn--secondary">Очистити</button>
+        <button type="submit" class="btn btn--primary">
+          <svg class="btn__icon"><use href="img/sprite.svg#icon-save"></use></svg>
+          <span class="btn__text">Додати задачу</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Індикатор завантаження -->
+    <div id="loadingIndicator" style="display: none; text-align: center; margin: 20px 0;">
+      Завантаження списку задач...
+    </div>
+
+    <!-- Контейнер для виводу карточок задач -->
+    <div id="todoList"></div>
+  </div>
+
+  <!-- Шаблон HTML (Template) для генерації карточки задачі через JS -->
+  <template id="task-template">
+    <div class="task-card">
+      <div class="task-card__header">
+        <h3 class="task-card__title"></h3>
+        <span class="task-card__tag"></span>
+      </div>
+      
+      <p class="task-card__desc"></p>
+      
+      <div class="task-card__info">
+        <div>👤 Студент ID: <strong class="task-card__userid"></strong> | 🔑 Запис #<strong class="task-card__id"></strong></div>
+        <div>⏳ Створено: <span class="task-card__created"></span></div>
+        <div>📅 Дедлайн: <span class="task-card__deadline"></span></div>
+        <div class="task-card__status">Статус: В роботі</div>
+      </div>
+
+      <div class="task-card__actions">
+        <button class="btn btn--complete">Готово</button>
+        <button class="btn btn--edit-action">Редагувати</button>
+        <button class="btn btn--delete">Видалити</button>
+      </div>
+    </div>
+  </template>
+</body>
+</html>
